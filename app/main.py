@@ -13,3 +13,7 @@ def status():
         "version": "1.0.0",
         "environment": "development"
     }
+
+@app.get("/version")
+def version():
+    return {"version": "1.1.0"}

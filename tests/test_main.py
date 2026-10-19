@@ -20,3 +20,9 @@ def test_status():
         "version": "1.0.0",
         "environment": "development"
     }
+
+def test_version():
+    response = client.get("/version")
+    
+    assert response.status_code == 200
+    assert response.json() == {"version": "1.1.0"}
