@@ -48,3 +48,16 @@ jobs:
           aws-region: us-east-1 
       - name: Verify AWS identity
         run: aws sts get-caller-identity      
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Tag and push Docker image
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: cloudops-status-api
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker tag cloudops-status-api:$IMAGE_TAG $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
