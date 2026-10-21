@@ -49,7 +49,7 @@ data "aws_iam_policy_document" "github_trust" {
     condition {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:tjeanb/cloudops-status-api:ref:refs/heads/main"]
+      values   = ["repo:tjeanb@100547503/cloudops-status-api@1425932202:ref:refs/heads/main"]
     }
   }
 }
